@@ -1,5 +1,19 @@
 const mongoose = require("mongoose");
 
+const commentSchema = new mongoose.Schema(
+  {
+    text: {
+      type: String,
+      required: true,
+    },
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: User,
+    },
+  },
+  { timestamps: true }
+);
+
 const hootSchema = new mongoose.Schema(
   {
     title: {
@@ -19,6 +33,7 @@ const hootSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    comments: [commentSchema],
   },
   { timestamps: true }
 );
